@@ -1,0 +1,6 @@
+# Swiftfin Style & Guidelines
+- **Formatting**: SwiftFormat is the canonical formatter/linter (`swiftformat .` locally, CI runs `swiftformat . --lint --config .swiftformat`). Keep files ASCII unless necessary and organize SwiftUI files with `// MARK:` blocks for major sections.
+- **Localization**: All new user-facing strings must be added to `Translations/*.lproj` and regenerated via SwiftGen so `Shared/Strings/Strings.swift` stays in sync. Only experimental features may temporarily skip localization per the contributing guide.
+- **Architecture patterns**: Prefer placing shared logic in `Shared/` and wrap platform-specific behavior with `PlatformView` or `#if os(iOS)/#if os(tvOS)` guards. Coordinators and navigation routes live under `Shared/Coordinators`, and services/settings belong in `Shared/Services` (e.g., `SwiftfinDefaults`).
+- **UI/UX**: Follow native SwiftUI/UIKit conventions while keeping Jellyfin branding. Document complex features and consider readability in tvOS focus-based UI. Screenshots or videos are expected for significant UI PRs.
+- **Pull requests & labels**: Reference related issues (`Closes #…`), supply a summary plus testing notes, and apply appropriate labels (`bug`, `enhancement`, `developer`, `iOS`, `tvOS`) so release notes remain accurate.

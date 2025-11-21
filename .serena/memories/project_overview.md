@@ -1,0 +1,11 @@
+# Swiftfin Project Overview
+- **Purpose**: Swiftfin is the official Jellyfin client for Apple platforms (iOS, iPadOS, tvOS). It delivers a native SwiftUI experience backed by VLCKit and aims to keep parity with Jellyfin server capabilities (libraries, downloads, Live TV, etc.).
+- **Tech stack**: Swift 6 (Xcode 15+/16), SwiftUI with selective UIKit, CoreStore persistence, Nuke image loading, Factory + Defaults for DI/settings, Jellyfin SDK Swift, VLCKit via Carthage, plus SPM dependencies such as CollectionHStack/VGrid, BlurHashKit, VLCUI, TVOSPicker. Fastlane handles CI and TestFlight.
+- **Repository layout**:
+  - `Swiftfin/` – iOS/iPadOS-specific app (App, Components, Views, Extensions, Resources).
+  - `Swiftfin tvOS/` – tvOS counterpart with focus-friendly UI.
+  - `Shared/` – common SwiftUI components, services (SwiftfinDefaults, Navigation, Player state, localization, logging, etc.).
+  - `Documentation/` – contributing, library support, players matrix, OS version policy.
+  - Supporting directories: `Translations/` strings, `Resources/` assets, `PreferencesView/` module, `fastlane/`, `.github/`, `XcodeConfig/`.
+- **Entry points**: `Swiftfin.xcodeproj` exposes `Swiftfin` and `Swiftfin tvOS` schemes. Launch via Xcode targets (select simulator or device) or run `fastlane buildLane scheme:"Swiftfin"` / `"Swiftfin tvOS"` to mirror CI. Minimum OS: iOS 16+, tvOS 17+.
+- **Architecture highlights**: Heavy reuse through `Shared/` with `PlatformView` and `#if os(...)` guards; playback offers Swiftfin (VLCKit) vs Native (AVKit) toggles; experimental flags gate incubating features (downloads, Live TV, etc.).
